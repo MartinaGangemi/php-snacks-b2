@@ -28,8 +28,16 @@ $ads = [
     ],
 
 ];
+$active =[];
 
-var_dump($ads["image_path"])
+foreach($ads as $ad){
+    if($ad["is_active"] == true){
+        array_push($active, $ad);
+    }
+};
+
+$randomNumber = rand(0, count($active)-1);
+var_dump($randomNumber, $active[$randomNumber]["link"]);
 ?>
 
 <!DOCTYPE html>
@@ -41,14 +49,11 @@ var_dump($ads["image_path"])
     <title>Document</title>
 </head>
 <body>
-    <?php foreach($ads as $pubblicità): ?>
-        <?php  if($pubblicità["is_active"]=="true"): ?>
-            <div>
-                <a href=" <?php echo $pubblicità["link"] ?>">
-                    <img  src="<?php echo $pubblicità["image_path"] ?>" alt="">
-                </a>
-            </div>
-        <?php endif ?>
-    <?php endforeach ?>
+    <div>
+        <a href="<?php echo $active[$randomNumber]["link"] ?>">
+            <img src="<?php echo $active[$randomNumber]["image_path"] ?>" alt="">
+        </a>
+        
+    </div> 
 </body>
 </html>
